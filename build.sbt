@@ -1,15 +1,15 @@
-organization in ThisBuild := "sample.helloworld"
+organization in ThisBuild := "sample.saysomething"
 
 // the Scala version that will be used for cross-compiled libraries
 scalaVersion in ThisBuild := "2.11.7"
 
-lazy val helloworldApi = project("helloworld-api")
+lazy val messageApi = project("say-something-api")
   .settings(
     version := "1.0-SNAPSHOT",
     libraryDependencies += lagomJavadslApi
   )
 
-lazy val helloworldImpl = project("helloworld-impl")
+lazy val messageImpl = project("say-something-impl")
   .enablePlugins(LagomJava)
   .settings(
     version := "1.0-SNAPSHOT",
@@ -19,21 +19,7 @@ lazy val helloworldImpl = project("helloworld-impl")
     )
   )
   .settings(lagomForkedTestSettings: _*)
-  .dependsOn(helloworldApi)
-
-lazy val hellostreamApi = project("hellostream-api")
-  .settings(version := "1.0-SNAPSHOT")
-  .settings(
-    libraryDependencies += lagomJavadslApi
-  )
-
-lazy val hellostreamImpl = project("hellostream-impl")
-  .settings(version := "1.0-SNAPSHOT")
-  .enablePlugins(LagomJava)
-  .dependsOn(hellostreamApi, helloworldApi)
-  .settings(
-    libraryDependencies += lagomJavadslTestKit
-  )
+  .dependsOn(messageApi)
 
 def project(id: String) = Project(id, base = file(id))
   .settings(eclipseSettings: _*)
