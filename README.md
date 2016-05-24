@@ -1,4 +1,7 @@
-[![Gitter](https://img.shields.io/gitter/room/gitterHQ/gitter.svg)](https://gitter.im/lagom/lagom?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)[<img src="https://img.shields.io/travis/typesafehub/activator-lagom-java.svg"/>](https://travis-ci.org/typesafehub/activator-lagom-java)
-# activator-lagom-java
+A really simple project to demonstrate Lightbend's Lagom framework. 
 
-A Lagom Java seed template for Lightbend Activator
+This project exposes an API to add a saying to a Person resource.
+
+e.g. POST /api/person/Bob/saying
+
+It uses the standard CQRS / Event Sourcing appraoch with Cassandra storage - this is the default standard in the framework.
