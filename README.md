@@ -10,14 +10,13 @@ http://www.lagomframework.com/documentation/1.0.x/GettingStarted.html
 
 To run:
 
-- Ensure activator (at least 1.13.10)
+Install activator (at least 1.13.10), then run from the terminal:
 
 - activator
 
 - runAll
 
-
-To call:
+To use service:
 
 POST /api/person/Bob/saying
 
