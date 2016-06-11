@@ -8,11 +8,11 @@ Technology
 ----------
 Lightbend's Lagom framework is used as a platform for building reactive, extremely scalable microservices in Java. Lagom is build on top of Scala, Play and Akka, thus enabling the reactive approach from that ecosystem in Java.
 
-It uses a CQRS / Event Sourcing approach with Cassandra storage (Lagom Persistence) - this is the default standard in the framework. However, you do not have to be use this approach e.g. you could just do ordinary CRUD using a Cassandra driver directly.
+It uses a CQRS / Event Sourcing approach with Cassandra storage (Lagom Persistence) - this is the default standard in the framework. However, you do not have to use this approach e.g. you could just do ordinary CRUD using a Cassandra driver directly.
 
 An early beta version of Lagom is used - so this is not a stable project in terms of API changes. Underneath the covers, Lagom is a wrapper over Play and Akka which are both mature and stable - so in this sense it is production-ready even as a beta. 
 
-Whilst an interesting project to be aware of, there are a few confusing areas and limitation that I hope will be simplified post beta. It is also a highly opinionated framework, so be aware of this if you require flexibility.
+Whilst an interesting project to be aware of, there are a few confusing areas and limitations that I hope will be resolved post beta. It is also a highly opinionated framework, so be aware of this if you require flexibility.
 
 Getting Started
 ----------------
