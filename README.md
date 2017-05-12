@@ -32,10 +32,10 @@ To use service
 --------------
 
 POST /api/person/Bob/saying
-```
+```json
 {"message": "Hello"}
 ```
 e.g:
-```
+```shell
 curl -H "Content-Type: application/json" -X POST -d '{"message": "Hello"}' http://localhost:9000/api/person/Bob/saying
 ```
