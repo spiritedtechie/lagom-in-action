@@ -23,18 +23,19 @@ To run service
 --------------
 
 Install activator (at least 1.13.10), then run from the terminal:
-
-    activator
-
-    runAll
+```
+activator
+runAll
+```
 
 To use service
 --------------
 
 POST /api/person/Bob/saying
-
+```
 {"message": "Hello"}
-
+```
 e.g:
-
-    curl -H "Content-Type: application/json" -X POST -d '{"message": "Hello"}' http://localhost:9000/api/person/Bob/saying
+```
+curl -H "Content-Type: application/json" -X POST -d '{"message": "Hello"}' http://localhost:9000/api/person/Bob/saying
+```
