@@ -1,47 +1,38 @@
-organization in ThisBuild := "sample.saysomething"
+organization in ThisBuild := "com.example"
+version in ThisBuild := "1.0.0-SNAPSHOT"
 
 // the Scala version that will be used for cross-compiled libraries
-scalaVersion in ThisBuild := "2.11.7"
+scalaVersion in ThisBuild := "2.11.8"
 
-lazy val messageApi = project("say-something-api")
+lazy val `person` = (project in file("."))
+  .aggregate(`person-api`, `person-impl`)
+
+lazy val `person-api` = (project in file("person-api"))
+  .settings(common: _*)
   .settings(
-    version := "1.0-SNAPSHOT",
-    libraryDependencies += lagomJavadslApi
+    libraryDependencies ++= Seq(
+      lagomJavadslApi,
+      lombok
+    )
   )
 
-lazy val messageImpl = project("say-something-impl")
+lazy val `person-impl` = (project in file("person-impl"))
   .enablePlugins(LagomJava)
+  .settings(common: _*)
   .settings(
-    version := "1.0-SNAPSHOT",
     libraryDependencies ++= Seq(
-      lagomJavadslPersistence,
-      lagomJavadslTestKit
+      lagomJavadslPersistenceCassandra,
+      lagomJavadslKafkaBroker,
+      lagomJavadslTestKit,
+      lombok
     )
   )
   .settings(lagomForkedTestSettings: _*)
-  .dependsOn(messageApi)
+  .dependsOn(`person-api`)
 
-def project(id: String) = Project(id, base = file(id))
-  .settings(eclipseSettings: _*)
-  .settings(javacOptions in compile ++= Seq("-encoding", "UTF-8", "-source", "1.8", "-target", "1.8", "-Xlint:unchecked", "-Xlint:deprecation"))
-  .settings(jacksonParameterNamesJavacSettings: _*) // applying it to every project even if not strictly needed.
+val lombok = "org.projectlombok" % "lombok" % "1.16.10"
 
-
-// See https://github.com/FasterXML/jackson-module-parameter-names
-lazy val jacksonParameterNamesJavacSettings = Seq(
+def common = Seq(
   javacOptions in compile += "-parameters"
 )
 
-// Configuration of sbteclipse
-// Needed for importing the project into Eclipse
-lazy val eclipseSettings = Seq(
-  EclipseKeys.projectFlavor := EclipseProjectFlavor.Java,
-  EclipseKeys.withBundledScalaContainers := false,
-  EclipseKeys.createSrc := EclipseCreateSrc.Default + EclipseCreateSrc.Resource,
-  EclipseKeys.eclipseOutput := Some(".target"),
-  EclipseKeys.withSource := true,
-  EclipseKeys.withJavadoc := true,
-  // avoid some scala specific source directories
-  unmanagedSourceDirectories in Compile := Seq((javaSource in Compile).value),
-  unmanagedSourceDirectories in Test := Seq((javaSource in Test).value)
-)
