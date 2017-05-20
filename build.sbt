@@ -4,7 +4,7 @@ version in ThisBuild := "1.0.0-SNAPSHOT"
 // the Scala version that will be used for cross-compiled libraries
 scalaVersion in ThisBuild := "2.11.8"
 
-lazy val `person` = (project in file("."))
+lazy val `lagom-in-action` = (project in file("."))
   .aggregate(`person-api`, `person-impl`)
 
 lazy val `person-api` = (project in file("person-api"))
